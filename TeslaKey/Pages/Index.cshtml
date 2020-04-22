@@ -1,0 +1,97 @@
+﻿@page
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css/definitions.css" />
+</head>
+<body>
+    <script>
+        var request = null, timeout = null;
+
+        function setclrtimer() {
+            timeout = setTimeout(function () {
+                $('#message').text('Ready');
+                $('#code').text('');
+                timeout = null;
+            }, 1000 * 15);
+        }
+        function requesttoken() {
+            var email = $("#email").val();
+            var password = $("#password").val();
+
+            var data = $.param({ email: email, password: password });
+
+            if (timeout != null) {
+                clearTimeout(timeout);
+                timeout = null;
+            }
+            if (request != null) {
+                request.abort();
+            }
+            $('#message').text('requesting');
+            $('#code').text('');
+
+            request = $.ajax('/gettoken', {
+                data: data,
+                method: 'POST',
+                Accept: 'application/json; charset=utf-8',
+                contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+                dataType: "text",
+            }).done(function (data) {
+                data = JSON.parse(data);
+                if (data.token != null) {
+                    $('#message').text('your token:');
+                    $('#code').text(data.token);
+                } else {
+                    $('#message').text('Got a problem:');
+                    $('#code').text(data.message);
+                    setclrtimer();
+                }
+            }).fail(function (data) {
+                $('#code').text(data.statusText);
+                setclrtimer();
+            }).always(function () {
+                request = null;
+            });
+        }
+    </script>
+    <form id="loginform">
+        <fieldset>
+            <legend class="docenter">Get your TESTLA unlock code</legend>
+            <div class="docenter">
+                <p>
+                    <label>email:</label>
+                    <input type="email" id="email" autocomplete="email" />
+                </p>
+                <p>
+                    <label>password:</label>
+                    <input type="password" id="password" autocomplete="password" />
+                </p>
+                <p><button type="button" onclick="requesttoken()">Get my token</button></p>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend class="docenter">Status</legend>
+            <div id="resultbox">
+                <div id="message" class="docenter">Ready</div>
+                <div id="code" class="docenter"></div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend class="docenter">Disclaimer &copy;2020</legend>
+            <p class="docenter">
+                This site doesn't save your credentials, and is free for use.<br />
+                The c#-project can be found on <a href="">git</a>, under a  <a href="">...</a> license.<br/>
+            </p>
+        </fieldset>
+    </form>
+</body>
+</html>

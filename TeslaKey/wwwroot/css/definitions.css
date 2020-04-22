@@ -1,0 +1,17 @@
+﻿body {
+}
+
+#loginform{
+    width:auto;
+}
+.docenter {
+    text-align: center;
+}
+.doright {
+    text-align: right;
+}
+
+#loginform #resultbox {
+    width: 100%;
+    min-height: 2.2em;
+}

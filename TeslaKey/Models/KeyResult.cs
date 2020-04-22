@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using TeslaKey.Languages;
 
 namespace TeslaKey.Models
 {
@@ -11,7 +12,7 @@ namespace TeslaKey.Models
         public string Message { get; set; } = null;
         public string Token { get; set; } = null;
 
-        internal static KeyResult Create(string response)
+        internal static KeyResult Create(TextBase TB, string response)
         {
             if (!string.IsNullOrWhiteSpace(response))
             {
@@ -28,14 +29,14 @@ namespace TeslaKey.Models
                 };
             }
         }
-        internal static KeyResult Error(string message)
+        internal static KeyResult Error(TextBase TB, string message)
         {
             return new KeyResult
             {
                 Message = message
             };
         }
-        internal static KeyResult ErrorServer()
+        internal static KeyResult ErrorServer(TextBase TB)
         {
             return new KeyResult
             {
@@ -43,7 +44,7 @@ namespace TeslaKey.Models
             };
         }
 
-        internal static KeyResult Code(string access_token)
+        internal static KeyResult Code(TextBase TB, string access_token)
         {
             if (!string.IsNullOrWhiteSpace(access_token))
             { 

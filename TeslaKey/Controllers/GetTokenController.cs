@@ -7,6 +7,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using TeslaKey.Languages;
 using TeslaKey.Models;
 
 namespace TeslaKey.Controllers
@@ -14,11 +15,10 @@ namespace TeslaKey.Controllers
     [ApiController]
     public class GetTokenController : ControllerBase
     {
+        private static HttpClient client = new HttpClient();
+
         private static readonly string client_secret = "c7257eb71a564034f9419ee651c7d0e5f7aa6bfbd18bafb5c5c033b093bb2fa3";
         private static readonly string client_id = "81527cff06843c8634fdc09e8ac0abefb46ac849f38fe1e431c2ef2106796384";
-
-        static HttpClient client = new HttpClient();
-
         static GetTokenController()
         {
             client.BaseAddress = new Uri("https://owner-api.teslamotors.com");
@@ -31,15 +31,16 @@ namespace TeslaKey.Controllers
         [Consumes("application/x-www-form-urlencoded")]
         public async Task<KeyResult> Post([FromForm] Request request)
         {
+            var TB = TextBase.Get(HttpContext);
             try
             {
                 if (string.IsNullOrWhiteSpace(request.Email) || string.IsNullOrWhiteSpace(request.Password))
                 {
-                    return KeyResult.Error("name and password are required");
-                }  
+                    return KeyResult.Error(TB, TB.MsgRequireLogin);
+                }
                 var requestdata = new
                 {
-                    password= request.Password,
+                    password = request.Password,
                     email = request.Email,
                     client_secret,
                     client_id,
@@ -57,21 +58,21 @@ namespace TeslaKey.Controllers
 
                 if (response.IsSuccessStatusCode)
                 {
-                    return KeyResult.Code((string)data.access_token);
+                    return KeyResult.Code(TB, (string)data.access_token);
                 }
                 else if (response.StatusCode == HttpStatusCode.Unauthorized)
                 {
-                    return KeyResult.Create("Invalid login");
+                    return KeyResult.Create(TB, TB.MsgInvalidLogin);
                 }
                 else
                 {
                     //todo abc log ?
-                    return KeyResult.Create((string)data.response);
+                    return KeyResult.Create(TB, (string)data.response);
                 }
             }
             catch
             {
-                return KeyResult.ErrorServer();
+                return KeyResult.ErrorServer(TB);
             }
         }
     }

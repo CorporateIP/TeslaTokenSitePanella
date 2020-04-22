@@ -1,15 +1,15 @@
 ﻿@page
 @{
     Layout = null;
+
+    var TB = TeslaKey.Languages.TextBase.Get(HttpContext);
 }
 <!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-            crossorigin="anonymous"></script>
+    <title>@(TB.HtlmTitle)</title>
+    <script src="/js/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="></script>
     <link rel="stylesheet" href="/css/definitions.css" />
 </head>
 <body>
@@ -18,7 +18,7 @@
 
         function setclrtimer() {
             timeout = setTimeout(function () {
-                $('#message').text('Ready');
+                $('#message').text('@(TB.MsgReady)');
                 $('#code').text('');
                 timeout = null;
             }, 1000 * 15);
@@ -36,10 +36,10 @@
             if (request != null) {
                 request.abort();
             }
-            $('#message').text('requesting');
+            $('#message').text('@(TB.MsgRequesting)');
             $('#code').text('');
 
-            request = $.ajax('/gettoken', {
+            request = $.ajax('/gettoken?language=@(TB.LanguageName)', {
                 data: data,
                 method: 'POST',
                 Accept: 'application/json; charset=utf-8',
@@ -48,10 +48,10 @@
             }).done(function (data) {
                 data = JSON.parse(data);
                 if (data.token != null) {
-                    $('#message').text('your token:');
+                    $('#message').text('@(TB.MsgYourToken)');
                     $('#code').text(data.token);
                 } else {
-                    $('#message').text('Got a problem:');
+                    $('#message').text('@(TB.MsgGotaProblem)');
                     $('#code').text(data.message);
                     setclrtimer();
                 }
@@ -65,31 +65,34 @@
     </script>
     <form id="loginform">
         <fieldset>
-            <legend class="docenter">Get your TESTLA unlock code</legend>
+            <legend class="docenter">@(TB.HtmlHeader)</legend>
+            <div id="languages">
+                <a href="/?language=NL">NL</a>
+                <a href="/?language=EN">EN</a>
+            </div>
             <div class="docenter">
                 <p>
-                    <label>email:</label>
+                    <label>@(TB.email):</label>
                     <input type="email" id="email" autocomplete="email" />
                 </p>
                 <p>
-                    <label>password:</label>
+                    <label>@(TB.password):</label>
                     <input type="password" id="password" autocomplete="password" />
                 </p>
-                <p><button type="button" onclick="requesttoken()">Get my token</button></p>
+                <p><button type="button" onclick="requesttoken()">@(TB.BtnRequest)</button></p>
             </div>
         </fieldset>
         <fieldset>
-            <legend class="docenter">Status</legend>
+            <legend class="docenter">@(TB.status)</legend>
             <div id="resultbox">
-                <div id="message" class="docenter">Ready</div>
+                <div id="message" class="docenter">@(TB.MsgReady)</div>
                 <div id="code" class="docenter"></div>
             </div>
         </fieldset>
         <fieldset>
-            <legend class="docenter">Disclaimer &copy;2020</legend>
+            <legend class="docenter">@(TB.infoheader)</legend>
             <p class="docenter">
-                This site doesn't save your credentials, and is free for use.<br />
-                The c#-project can be found on <a href="">git</a>, under a  <a href="">...</a> license.<br/>
+                @Html.Raw(TB.infotext)
             </p>
         </fieldset>
     </form>

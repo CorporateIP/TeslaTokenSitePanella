@@ -2,6 +2,7 @@
 }
 
 #loginform{
+    top:3em;
     width:auto;
 }
 .docenter {
@@ -14,4 +15,8 @@
 #loginform #resultbox {
     width: 100%;
     min-height: 2.2em;
+}
+
+#languages{
+    float:right;
 }

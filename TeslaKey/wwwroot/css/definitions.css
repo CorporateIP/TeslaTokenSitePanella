@@ -14,9 +14,16 @@
 
 #loginform #resultbox {
     width: 100%;
-    min-height: 2.2em;
+    min-height: 2.4em;
 }
 
-#languages{
-    float:right;
+#languages {
+    position: relative;
+    left: 100%;
+    top: 0%;
+    transform: translate(-100%,0%);
 }
+
+    #languages > div {
+        display: inline-block;
+    }

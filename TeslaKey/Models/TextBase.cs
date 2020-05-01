@@ -76,7 +76,7 @@ namespace TeslaKey.Languages
     public class TextBaseNL : TextBase
     {
         public override string HtlmTitle => "Tesla - verkijg code";
-        public override string HtmlHeader => "Hier voor uw TESTLA ontgrendel code";
+        public override string HtmlHeader => "Hier voor uw TESLA ontgrendel code";
 
         public override string LanguageName => "NL";
 
@@ -102,7 +102,7 @@ namespace TeslaKey.Languages
     public class TextBaseEN : TextBase
     {
         public override string HtlmTitle => "Tesla - get login";
-        public override string HtmlHeader => "Get your TESTLA unlock code";
+        public override string HtmlHeader => "Get your TESLA unlock code";
 
         public override string LanguageName => "EN";
 

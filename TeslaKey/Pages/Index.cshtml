@@ -9,7 +9,9 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@(TB.HtlmTitle)</title>
-    <script src="/js/jquery-3.4.1.min.js" ></script>
+    <script src="/js/jquery-3.5.0.min.js"></script>
+    <script src="/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="/css/definitions.css" />
 </head>
 <body>
@@ -75,38 +77,46 @@
 
         }
     </script>
-    <form id="loginform" >
-        <fieldset>
-            <legend class="docenter">@(TB.HtmlHeader)</legend>
+    <div class="container-fluid body-content">
+        <div class="row">
             <div id="languages">
-                <a href="/?language=NL">NL</a>
-                <a href="/?language=EN">EN</a>
+                <a href="/?language=NL"><image src="/images/flag-nl.png" alt="NL" width="30" /></a>
+                <a href="/?language=EN"><image src="/images/flag-uk.png" alt="EN" width="30" /></a>
             </div>
-            <div class="docenter">
-                <p>
-                    <label for="email">@(TB.email):</label>
-                    <input type="text"id="email" />
-                </p>
-                <p>
-                    <label for="password">@(TB.password):</label>
-                    <input type="password" id="password" />
-                </p>
-                <p><button type="button" onclick="requesttoken()">@(TB.BtnRequest)</button></p>
+            <div class="col-lg-3 col-xl-4">
             </div>
-        </fieldset>
-        <fieldset>
-            <legend class="docenter">@(TB.status)</legend>
-            <div id="resultbox">
-                <div id="message" class="docenter">@(TB.MsgReady)</div>
-                <div id="code" class="docenter"></div>
+            <div class="col-lg-6 col-md-12 col-xl-4">
+                <form id="loginform">
+                    <fieldset>
+                        <legend class="docenter">@(TB.HtmlHeader)</legend>
+                        <div class="docenter">
+                            <p>
+                                <label for="email">@(TB.email):</label>
+                                <input type="text" id="email" />
+                            </p>
+                            <p>
+                                <label for="password">@(TB.password):</label>
+                                <input type="password" id="password" />
+                            </p>
+                            <p><button type="button" onclick="requesttoken()">@(TB.BtnRequest)</button></p>
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <legend class="docenter">@(TB.status)</legend>
+                        <div id="resultbox">
+                            <div id="message" class="docenter">@(TB.MsgReady)</div>
+                            <div id="code" class="docenter"></div>
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <legend class="docenter">@(TB.infoheader)</legend>
+                        <p class="docenter">
+                            @Html.Raw(TB.infotext)
+                        </p>
+                    </fieldset>
+                </form>
             </div>
-        </fieldset>
-        <fieldset>
-            <legend class="docenter">@(TB.infoheader)</legend>
-            <p class="docenter">
-                @Html.Raw(TB.infotext)
-            </p>
-        </fieldset>
-    </form>
+        </div>
+    </div>
 </body>
 </html>

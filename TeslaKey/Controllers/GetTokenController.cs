@@ -9,6 +9,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using TeslaKey.Languages;
 using TeslaKey.Models;
+using TeslaKey.Singletons;
 
 namespace TeslaKey.Controllers
 {
@@ -19,12 +20,18 @@ namespace TeslaKey.Controllers
 
         private static readonly string client_secret = "c7257eb71a564034f9419ee651c7d0e5f7aa6bfbd18bafb5c5c033b093bb2fa3";
         private static readonly string client_id = "81527cff06843c8634fdc09e8ac0abefb46ac849f38fe1e431c2ef2106796384";
+        private readonly ILockoutHandler _lockout;
+
         static GetTokenController()
         {
             client.BaseAddress = new Uri("https://owner-api.teslamotors.com");
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
+        public GetTokenController(ILockoutHandler lockout)
+        {
+            this._lockout= lockout;
+        }
         // POST: api/gettoken
         //   [HttpPost]
         [Route("/gettoken")]
@@ -38,6 +45,12 @@ namespace TeslaKey.Controllers
                 {
                     return KeyResult.Error(TB, TB.MsgRequireLogin);
                 }
+
+                if (this._lockout.LockedOut(request.Email.ToLower()))
+                {
+                    return KeyResult.Error(TB, TB.MsgLockedOut);
+                }
+
                 var requestdata = new
                 {
                     password = request.Password,

@@ -24,11 +24,11 @@
     font-weight: 600;
 }
 /* Form items styling */
-#loginform {
+#loginform, #apiKeyForm {
     width: 100%;
     color: white;
     max-width: 400px;
-    padding:0  5%;
+    padding: 0 5%;
     border-radius: 10px;
     background-color: rgba(255, 255, 255, 0.1);
     min-height: 480px;
@@ -147,7 +147,7 @@
     .main--form{
         flex-direction: column;
     }
-    #loginform:first-of-type{
+    #loginform{
         margin-bottom: 20px;
     }
 }

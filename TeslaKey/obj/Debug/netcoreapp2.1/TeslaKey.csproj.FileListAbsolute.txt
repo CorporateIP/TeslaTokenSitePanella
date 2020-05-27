@@ -1,0 +1,4 @@
+C:\Users\Jimmy Verburgt\Documents\WERK\TeslaTokenSite\TeslaKey\obj\Debug\netcoreapp2.1\TeslaKey.csprojAssemblyReference.cache
+C:\Users\Jimmy Verburgt\Documents\WERK\TeslaTokenSite\TeslaKey\obj\Debug\netcoreapp2.1\TeslaKey.csproj.CoreCompileInputs.cache
+C:\Users\Jimmy Verburgt\Documents\WERK\TeslaTokenSite\TeslaKey\obj\Debug\netcoreapp2.1\TeslaKey.AssemblyInfoInputs.cache
+C:\Users\Jimmy Verburgt\Documents\WERK\TeslaTokenSite\TeslaKey\obj\Debug\netcoreapp2.1\TeslaKey.AssemblyInfo.cs

@@ -58,6 +58,12 @@ namespace TeslaKey.Languages
         public abstract string password { get; }
         public abstract string status { get; }
 
+        public abstract string apiToken { get; }
+        public abstract string apiTokenSub { get; }
+        public abstract string refreshToken { get; }
+        public abstract string loginSub { get; }
+        public abstract string github { get; }
+
         public abstract string MsgRequireLogin { get; }
         public abstract string MsgInvalidLogin { get; }
         public abstract string MsgLockedOut { get; }
@@ -75,14 +81,22 @@ namespace TeslaKey.Languages
 
     public class TextBaseNL : TextBase
     {
-        public override string HtlmTitle => "Tesla - verkijg code";
-        public override string HtmlHeader => "Hier voor uw TESLA ontgrendel code";
+        public override string HtlmTitle => "Teslaview";
+        public override string HtmlHeader => "Genereer een API sleutel voor je Tesla Account.";
 
         public override string LanguageName => "NL";
 
         public override string email => "E-mail adres";
         public override string password => "Wachtwoord";
         public override string status => "Status";
+
+        public override string apiToken => "API sleutel";
+        public override string apiTokenSub => "Zichtbaar na inloggen";
+
+        public override string refreshToken => "Ververs sleutel";
+        public override string loginSub => "Met je tesla account";
+        public override string github => "Bekijk op Github";
+
 
         public override string MsgRequireLogin => "Naam en paswoord zijn vereist";
         public override string MsgInvalidLogin => "Toegang geweigerd";
@@ -93,22 +107,29 @@ namespace TeslaKey.Languages
         public override string MsgRequesting => "Server verzoek word gedaan";
         public override string MsgGotaProblem => "Probleem tegengekomen:";
 
-        public override string BtnRequest => "Verzoek code";
+        public override string BtnRequest => "Genereer sleutel";
 
         public override string infoheader => "Disclaimer ©2020";
-        public override string infotext => @"Deze site slaat geen gegevens van u op, gebruikt geen cookies en is gratis voor gebruik.<br />Het C#-Project kan op <a href=&quote;&quote;>GIT</a> gevonden worden, onder een  <a href=&quote;&quote;>...</a> licentie.<br />";
+        public override string infotext => "Wij slaan geen van je gegevens op, we gebruiken deze alleen om de API sleutel bij Tesla op te vragen.";
 
      }
     public class TextBaseEN : TextBase
     {
-        public override string HtlmTitle => "Tesla - get login";
-        public override string HtmlHeader => "Get your TESLA unlock code";
+        public override string HtlmTitle => "Teslaview";
+        public override string HtmlHeader => "Generate an API token for your Tesla Account.";
 
         public override string LanguageName => "EN";
 
         public override string email => "Email";
         public override string password => "Password";
         public override string status => "Status";
+
+        public override string apiToken => "API token";
+        public override string apiTokenSub => "Will appear after login";
+
+        public override string refreshToken => "Refresh token";
+        public override string loginSub => "With your tesla account";
+        public override string github => "View on Github";
 
         public override string MsgRequireLogin => "name and password are required";
         public override string MsgInvalidLogin => "invalid login";
@@ -119,9 +140,9 @@ namespace TeslaKey.Languages
         public override string MsgRequesting => "requesting";
         public override string MsgGotaProblem => "got a problem:";
 
-        public override string BtnRequest => "Get my token";
+        public override string BtnRequest => "Generate token";
 
         public override string infoheader => "Disclaimer ©2020";
-        public override string infotext => @"This site doesn't save your credentials, uses no cookies and is free for use.<br />The C#-Project can be found on <a href=&quote;&quote;>GIT</a>, under a  <a href=&quote;&quote;>...</a> license.<br />";
+        public override string infotext => "We do not store any of your credentials, we only use your credentials to retrieve the API token from Tesla.";
     }
 }

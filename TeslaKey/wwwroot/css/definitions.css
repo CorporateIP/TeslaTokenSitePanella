@@ -1,10 +1,93 @@
 ﻿body {
+    font-family: Raleway;
+    background-color: #131313;
 }
 
-#loginform{
-    top:3em;
-    width:auto;
+.main--wrapper{
+    padding:2.5% 20%;
 }
+.main--form{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.mainTitle{
+    color: white;
+    font-size: 30px;
+    font-weight: 700;
+}
+.mainTitleSub {
+    color: #FF3A3A;
+    font-size: 20px;
+    font-weight: 600;
+}
+/* Form items styling */
+#loginform {
+    width: 100%;
+    color: white;
+    max-width: 400px;
+    padding:0  5%;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    min-height: 480px;
+    max-height: 480px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.formItem div{
+    margin-bottom: 20px;
+}
+.formItem label{
+    display: block;
+    font-weight: 600;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+.formItem input{
+    border: none;
+    width: 100%;
+    font-size: 23px;
+    padding: 5px;
+    border-radius: 5px;
+}
+.formItem input:focus{
+    outline: none;
+}
+.formItem input.inputShow {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+.formItem button {
+    border: none;
+    background-color: #FF3A3A;
+    border-radius: 5px;
+    text-align: center;
+    width: 100%;
+    color: white;
+    padding: 10px 0;
+    font-size: 20px;
+    font-weight: 600;
+}
+.formItem p {
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 600;
+    margin: 0;
+}
+.formTitle{
+    font-size: 25px!important;
+    font-weight: 600;
+}
+.formSub, .copy {
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.5);
+}
+.copy{
+    margin-top: 20px;
+    font-weight: 600;
+}
+/* Global Classes */
 .docenter {
     text-align: center;
 }
@@ -12,18 +95,80 @@
     text-align: right;
 }
 
-#loginform #resultbox {
-    width: 100%;
-    min-height: 2.4em;
-}
-
-#languages {
+/* Languages selection styling */
+#languages, .stores {
+    display: inline-block;
     position: relative;
-    left: 100%;
+    left: 50%;
     top: 0%;
-    transform: translate(-100%,0%);
+    transform: translate(-50%,0%);
+    margin-bottom: 50px;
+    text-align: center;
+}
+.stores img{
+    width: 150.66px;
+    margin: 5px;
+}
+#languages img {
+    height: 40px;
+    width: 40px;
+    display: inline-block;
+    border-radius: 50%;
+    padding: 2px;
+}
+.active {
+    border: 2px #FF3A3A solid;
 }
 
-    #languages > div {
-        display: inline-block;
+/* Github link styling */
+.github {
+    position: absolute;
+    background-color: white;
+    right: 20px;
+    top: 20px;
+    padding: 10px;
+    border-radius: 10px;
+}
+.github p{
+    text-decoration: none;
+    color: black;
+    display: inline-block;
+    font-weight: 600;
+    font-size: 20px;
+    margin-right: 10px;
+}
+.github img{
+    display: inline-block;
+    width: 70px;
+}
+
+/* Media queries */
+@media screen and ( max-width: 1400px){
+    .main--form{
+        flex-direction: column;
     }
+    #loginform:first-of-type{
+        margin-bottom: 20px;
+    }
+}
+@media screen and ( max-width: 600px) {
+    .main--wrapper{
+        padding:2.5% 10%;
+    }
+    .github img{
+        width: 50px;
+    }
+}
+@media screen and ( max-width: 850px) {
+    .github p{
+        display: none;
+    }
+}
+@media screen and ( max-width: 450px) {
+    .main--wrapper {
+        padding: 2.5% 5%;
+    }
+    .github img {
+        width: 30px;
+    }
+}

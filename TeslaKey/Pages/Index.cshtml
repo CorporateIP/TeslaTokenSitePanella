@@ -3,6 +3,8 @@
     Layout = null;
 
     var TB = TeslaKey.Languages.TextBase.Get(HttpContext);
+
+    
 }
 <!DOCTYPE html>
 <html>
@@ -12,12 +14,22 @@
     <script src="/js/jquery-3.5.0.min.js"></script>
     <script src="/dist/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/dist/css/bootstrap.css" />
-    <link rel="stylesheet" href="/css/definitions.css" />
+    <link rel="stylesheet" href="~/css/definitions.css" type="text/css"/>
 </head>
 <body>
     <script>
         var request = null, timeout = null;
+        $(document).ready(function () {
+            let searchParam = new URLSearchParams(window.location.search);
 
+            if (searchParam.get("language") === "EN") {
+                $("#NL img").removeClass("active");
+                $("#EN img").addClass("active");
+            } else if (searchParam === "NL") {
+                $("#EN img").removeClass("active");
+                $("#NL img").addClass("active");
+            }
+        })
         function setclrtimer() {
             timeout = setTimeout(function () {
                 $('#message').text('@(TB.MsgReady)');
@@ -78,44 +90,60 @@
         }
     </script>
     <div class="container-fluid body-content">
-        <div class="row">
+        <!-- TODO:: LINK NAAR GITHUB PAGINA IN A ELEMENT ZETTEN-->
+        <a class="github" href="">
+            <p>@(TB.github)</p>
+            <img src="~/images/github-brands.svg" alt="github" />
+        </a>
+        <div class="main--wrapper">
             <div id="languages">
-                <a href="/?language=NL"><image src="/images/flag-nl.png" alt="NL" width="30" /></a>
-                <a href="/?language=EN"><image src="/images/flag-uk.png" alt="EN" width="30" /></a>
+                <a href="/?language=NL" id="NL"><img class="active" src="/images/flag-nl.png" alt="NL" height="20" /></a>
+                <a href="/?language=EN" id="EN"><img src="/images/flag-uk.png" alt="EN" height="20" /></a>
             </div>
-            <div class="col-lg-3 col-xl-4">
+            <h1 class="docenter mainTitle">@(TB.HtlmTitle)</h1>
+            <h1 class="docenter mainTitleSub">@(TB.HtmlHeader)</h1>
+            <div class="stores">
+                <!-- TODO:: LINK NAAR APP STORE VAN DE TESLA APP ALS HIJ ONLINE STAAT IN A ELEMENT ZETTEN-->
+                <a href=""><img src="~/images/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" alt="Apple store" /></a>
+                <a href=""><img src="~/images/Google_Play_Store_badge_EN.svg" alt="Play store" /></a>
             </div>
-            <div class="col-lg-6 col-md-12 col-xl-4">
+            <div class="main--form">
                 <form id="loginform">
                     <fieldset>
-                        <legend class="docenter">@(TB.HtmlHeader)</legend>
-                        <div class="docenter">
-                            <p>
+                        <h2 class="docenter formTitle">Login</h2>
+                        <h2 class="docenter formSub">@(TB.loginSub)</h2>
+                        <div class="formItem">
+                            <div>
                                 <label for="email">@(TB.email):</label>
                                 <input type="text" id="email" />
-                            </p>
-                            <p>
+                            </div>
+                            <div>
                                 <label for="password">@(TB.password):</label>
                                 <input type="password" id="password" />
-                            </p>
-                            <p><button type="button" onclick="requesttoken()">@(TB.BtnRequest)</button></p>
+                            </div>
+                            <button type="button" onclick="requesttoken()">@(TB.BtnRequest)</button>
                         </div>
                     </fieldset>
+                </form>
+                <form id="loginform">
                     <fieldset>
-                        <legend class="docenter">@(TB.status)</legend>
-                        <div id="resultbox">
-                            <div id="message" class="docenter">@(TB.MsgReady)</div>
-                            <div id="code" class="docenter"></div>
+                        <h2 class="docenter formTitle">API Token</h2>
+                        <h2 class="docenter formSub">@(TB.apiTokenSub)</h2>
+                        <div class="formItem">
+                            <div>
+                                <label for="email">@(TB.apiToken):</label>
+                                <input class="inputShow" type="text" id="email" />
+                            </div>
+                            <div>
+                                <label for="password">@(TB.refreshToken):</label>
+                                <input class="inputShow" type="password" id="password" />
+                            </div>
+                            <p class="docenter">@(TB.infotext)</p>
                         </div>
-                    </fieldset>
-                    <fieldset>
-                        <legend class="docenter">@(TB.infoheader)</legend>
-                        <p class="docenter">
-                            @Html.Raw(TB.infotext)
-                        </p>
                     </fieldset>
                 </form>
             </div>
+            <p class="docenter copy">Copyright 2020 - Panella B.V.</p>
         </div>
     </div>
 </body>

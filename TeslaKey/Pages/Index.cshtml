@@ -32,10 +32,10 @@
         })
         function setclrtimer() {
             timeout = setTimeout(function () {
-                $('#message').text('@(TB.MsgReady)');
-                $('#code').text('');
+                $('#code').val('');
+                $('#refreshtoken').val('');
                 timeout = null;
-            }, 1000 * 15);
+            }, 1000 * 7.5);
         }
         function requesttoken() {
             var email = $("#email").val();
@@ -50,8 +50,8 @@
             if (request != null) {
                 request.abort();
             }
-            $('#message').text('@(TB.MsgRequesting)');
-            $('#code').text('');
+            $('#code').val('@(TB.MsgRequesting)');
+            $('#refreshtoken').val('');
 
             if (window.sessionStorage) {
                 sessionStorage.setItem("username", email);
@@ -65,11 +65,11 @@
             }).done(function (data) {
                 data = JSON.parse(data);
                 if (data.token != null) {
-                    $('#message').text('@(TB.MsgYourToken)');
-                    $('#code').text(data.token);
+                    $('#code').val(data.token);
+                    $('#refreshtoken').val(data.token);
                 } else {
-                    $('#message').text('@(TB.MsgGotaProblem)');
-                    $('#code').text(data.message);
+                    $('#code').val('@(TB.MsgGotaProblem)');
+                    $('#refreshtoken').val(data.message);
                     setclrtimer();
                 }
             }).fail(function (data) {
@@ -131,12 +131,12 @@
                         <h2 class="docenter formSub">@(TB.apiTokenSub)</h2>
                         <div class="formItem">
                             <div>
-                                <label for="email">@(TB.apiToken):</label>
-                                <input class="inputShow" type="text" id="email" />
+                                <label for="code">@(TB.apiToken):</label>
+                                <input class="inputShow" type="text" id="code" readonly />
                             </div>
                             <div>
-                                <label for="password">@(TB.refreshToken):</label>
-                                <input class="inputShow" type="password" id="password" />
+                                <label for="refreshtoken">@(TB.refreshToken):</label>
+                                <input class="inputShow" type="text" id="refreshtoken" readonly/>
                             </div>
                             <p class="docenter">@(TB.infotext)</p>
                         </div>

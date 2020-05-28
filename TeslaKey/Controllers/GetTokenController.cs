@@ -71,7 +71,7 @@ namespace TeslaKey.Controllers
 
                 if (response.IsSuccessStatusCode)
                 {
-                    return KeyResult.Code(TB, (string)data.access_token);
+                    return KeyResult.Code(TB, (string)data.access_token, (string)data.refresh_token);
                 }
                 else if (response.StatusCode == HttpStatusCode.Unauthorized)
                 {

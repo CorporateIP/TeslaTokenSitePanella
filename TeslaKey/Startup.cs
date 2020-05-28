@@ -35,7 +35,16 @@ namespace TeslaKey
             app.UseHttpsRedirection();
             app.UseRouting();
 
-            app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                OnPrepareResponse = ctx =>
+                {
+                    var cachePeriod = env.IsDevelopment() ? "600" : "604800";
+                    // Requires the following import:
+                    // using Microsoft.AspNetCore.Http;
+                    ctx.Context.Response.Headers.Append("Cache-Control", $"public, max-age={cachePeriod}");
+                }
+            });
 
             app.UseEndpoints(endpoints =>
             {

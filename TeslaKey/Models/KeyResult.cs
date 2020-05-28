@@ -11,6 +11,7 @@ namespace TeslaKey.Models
     {
         public string Message { get; set; } = null;
         public string Token { get; set; } = null;
+        public string RefreshToken { get; set; } = null;
 
         internal static KeyResult Create(TextBase TB, string response)
         {
@@ -44,13 +45,14 @@ namespace TeslaKey.Models
             };
         }
 
-        internal static KeyResult Code(TextBase TB, string access_token)
+        internal static KeyResult Code(TextBase TB, string access_token, string refresh_token)
         {
             if (!string.IsNullOrWhiteSpace(access_token))
             { 
                 return new KeyResult
                 {
-                    Token = access_token
+                    Token = access_token,
+                    RefreshToken= refresh_token,
                 };
             }
             else

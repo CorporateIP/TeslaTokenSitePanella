@@ -14,7 +14,7 @@ WORKDIR "/src/testaspetcore"
 RUN dotnet build "TeslaKey.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "TeslaKey.csprojj" -c Release -o /app/publish
+RUN dotnet publish "TeslaKey.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app

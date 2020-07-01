@@ -10,7 +10,7 @@ WORKDIR /src
 COPY ["TeslaKey/TeslaKey.csproj", "TeslaKey/"]
 RUN dotnet restore "TeslaKey/TeslaKey.csproj"
 COPY . .
-WORKDIR "/src/testaspetcore"
+WORKDIR "/src/TeslaKey"
 RUN dotnet build "TeslaKey.csproj" -c Release -o /app/build
 
 FROM build AS publish

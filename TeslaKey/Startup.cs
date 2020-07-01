@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.StaticFiles;
 using TeslaKey.Singletons;
+using Microsoft.AspNetCore.HttpOverrides;
 
 namespace TeslaKey
 {
@@ -32,6 +33,10 @@ namespace TeslaKey
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            {
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+            });
             app.UseHttpsRedirection();
             app.UseRouting();
 

@@ -164,7 +164,7 @@
     }
 
 /* Media queries */
-@media screen and ( max-width: 1050px) {
+@media screen and ( max-width: 950px) {
     .main--form {
         flex-direction: column;
     }
@@ -175,9 +175,9 @@
 
 }
 
-@media screen and ( min-width: 1050px) {
+@media screen and ( min-width: 950px) {
     .main--wrapper {
-        padding: 2.5% 5%;
+        padding: 2.5% 0%;
     }
 }
 

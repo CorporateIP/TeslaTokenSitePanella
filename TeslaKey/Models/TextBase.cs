@@ -63,6 +63,7 @@ namespace TeslaKey.Languages
         public abstract string refreshToken { get; }
         public abstract string loginSub { get; }
         public abstract string github { get; }
+        public abstract string commingsoon { get; }
 
         public abstract string MsgRequireLogin { get; }
         public abstract string MsgInvalidLogin { get; }
@@ -97,6 +98,7 @@ namespace TeslaKey.Languages
         public override string loginSub => "Met je tesla account";
         public override string github => "Bekijk op Github";
 
+        public override string commingsoon => "Nog niet beschikbaar";
 
         public override string MsgRequireLogin => "Naam en paswoord zijn vereist";
         public override string MsgInvalidLogin => "Toegang geweigerd";
@@ -130,6 +132,7 @@ namespace TeslaKey.Languages
         public override string refreshToken => "Refresh token";
         public override string loginSub => "With your tesla account";
         public override string github => "View on Github";
+        public override string commingsoon => "Coming soon..";
 
         public override string MsgRequireLogin => "name and password are required";
         public override string MsgInvalidLogin => "invalid login";

@@ -8,21 +8,26 @@ namespace TeslaKey.Singletons
 {
     public interface ILockoutHandler
     {
-        bool LockedOut(string email);
+        bool LockedOut(string category, string email);
     }
     public class LockoutHandler : ILockoutHandler
     {
-        private Dictionary<string, List<DateTime>> requests = new Dictionary<string, List<DateTime>>();
+        private Dictionary<string, Dictionary<string, List<DateTime>>> requests = new Dictionary<string, Dictionary<string, List<DateTime>>>();
         private object lockobj = new object();
 
-        bool ILockoutHandler.LockedOut(string key)
+        public LockoutHandler()
+        {
+            requests["ip"] = new Dictionary<string, List<DateTime>>();
+            requests["email"] = new Dictionary<string, List<DateTime>>();
+        }
+        bool ILockoutHandler.LockedOut(string category, string key)
         {
             lock (lockobj)
             {
-                if (!requests.TryGetValue(key, out List<DateTime> l))
+                if (!requests[category].TryGetValue(key, out List<DateTime> l))
                 {
                     l = new List<DateTime>();
-                    requests[key] = l;
+                    requests[category][key] = l;
                 }
                 var tt = DateTime.Now.AddMinutes(-5);
                 for (int nit = 0; nit < l.Count;)

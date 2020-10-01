@@ -46,9 +46,13 @@ namespace TeslaKey.Controllers
                     return KeyResult.Error(TB, TB.MsgRequireLogin);
                 }
 
-                if (this._lockout.LockedOut(request.Email.ToLower()))
+                if (this._lockout.LockedOut("ip", this.HttpContext.Connection.RemoteIpAddress.ToString()))
                 {
                     return KeyResult.Error(TB, TB.MsgLockedOut);
+                }
+                if (this._lockout.LockedOut("email", request.Email.ToLower()))
+                {
+                        return KeyResult.Error(TB, TB.MsgLockedOut);
                 }
 
                 var requestdata = new

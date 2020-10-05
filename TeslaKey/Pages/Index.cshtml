@@ -100,51 +100,51 @@
                 <a href="/?language=NL" id="NL"><img class="active" src="/images/flag-nl.png" alt="NL" height="20" /></a>
                 <a href="/?language=EN" id="EN"><img src="/images/flag-uk.png" alt="EN" height="20" /></a>
             </div>
-            <h1 class="docenter mainTitle">@(TB.HtlmTitle)</h1>
+            <!--     <h1 class="docenter mainTitle">@(TB.HtlmTitle)</h1>-->
             <h1 class="docenter mainTitleSub">@(TB.HtmlHeader)</h1>
-            <div class="stores">
-                <!-- TODO:: LINK NAAR APP STORE VAN DE TESLA APP ALS HIJ ONLINE STAAT IN A ELEMENT ZETTEN-->
-                <a href="javascript:alert('@TB.commingsoon')"><img src="~/images/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" alt="Apple store" /></a>
-                <a href="javascript:alert('@TB.commingsoon')"><img src="~/images/Google_Play_Store_badge_EN.svg" alt="Play store" /></a>
-            </div>
-            <div class="main--form">
-                <form id="loginform">
-                    <fieldset>
-                        <h2 class="docenter formTitle">Login</h2>
-                        <h2 class="docenter formSub">@(TB.loginSub)</h2>
-                        <div class="formItem">
-                            <div>
-                                <label for="email">@(TB.email):</label>
-                                <input type="text" id="email" />
-                            </div>
-                            <div>
-                                <label for="password">@(TB.password):</label>
-                                <input type="password" id="password" />
-                            </div>
-                            <button type="button" onclick="requesttoken()">@(TB.BtnRequest)</button>
+            <!--      <div class="stores"> -->
+          <!-- TODO:: LINK NAAR APP STORE VAN DE TESLA APP ALS HIJ ONLINE STAAT IN A ELEMENT ZETTEN
+        <!--    <a href="javascript:alert('@TB.commingsoon')"><img src="~/images/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" alt="Apple store" /></a>
+            <a href="javascript:alert('@TB.commingsoon')"><img src="~/images/Google_Play_Store_badge_EN.svg" alt="Play store" /></a>
+        </div>-->
+        <div class="main--form">
+            <form id="loginform">
+                <fieldset>
+                    <h2 class="docenter formTitle">Login</h2>
+                    <h2 class="docenter formSub">@(TB.loginSub)</h2>
+                    <div class="formItem">
+                        <div>
+                            <label for="email">@(TB.email):</label>
+                            <input type="text" id="email" />
                         </div>
-                    </fieldset>
-                </form>
-                <form id="apiKeyForm">
-                    <fieldset>
-                        <h2 class="docenter formTitle">API Token</h2>
-                        <h2 class="docenter formSub">@(TB.apiTokenSub)</h2>
-                        <div class="formItem">
-                            <div>
-                                <label for="code">@(TB.apiToken):</label>
-                                <input class="inputShow" type="text" id="code" readonly />
-                            </div>
-                            <div>
-                                <label for="refreshtoken">@(TB.refreshToken):</label>
-                                <input class="inputShow" type="text" id="refreshtoken" readonly/>
-                            </div>
-                            <p class="docenter">@(TB.infotext)</p>
+                        <div>
+                            <label for="password">@(TB.password):</label>
+                            <input type="password" id="password" />
                         </div>
-                    </fieldset>
-                </form>
-            </div>
-            <p class="docenter copy">Copyright 2020 - Panella B.V.</p>
+                        <button type="button" onclick="requesttoken()">@(TB.BtnRequest)</button>
+                    </div>
+                </fieldset>
+            </form>
+            <form id="apiKeyForm">
+                <fieldset>
+                    <h2 class="docenter formTitle">API Token</h2>
+                    <h2 class="docenter formSub">@(TB.apiTokenSub)</h2>
+                    <div class="formItem">
+                        <div>
+                            <label for="code">@(TB.apiToken):</label>
+                            <input class="inputShow" type="text" id="code" readonly />
+                        </div>
+                        <div>
+                            <label for="refreshtoken">@(TB.refreshToken):</label>
+                            <input class="inputShow" type="text" id="refreshtoken" readonly />
+                        </div>
+                        <p class="docenter">@(TB.infotext)</p>
+                    </div>
+                </fieldset>
+            </form>
         </div>
+        <p class="docenter copy">Copyright 2020 - Panella B.V.</p>
+    </div>
     </div>
 </body>
 </html>

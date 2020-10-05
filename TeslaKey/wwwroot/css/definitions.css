@@ -1,5 +1,11 @@
-﻿body {
-    font-family: Raleway;
+﻿
+@font-face {
+    font-family: theFont;
+    src: url(/fonts/Montserrat-Medium.ttf);
+}
+
+body {
+    font-family: theFont;
     background-color: #131313;
 }
 

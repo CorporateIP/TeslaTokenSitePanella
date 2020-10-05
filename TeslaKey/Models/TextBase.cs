@@ -40,8 +40,11 @@ namespace TeslaKey.Languages
         }
         public static TextBase Get(HttpContext context)
         {
-            context.Request.Query.TryGetValue("language", out StringValues languagestrings);
-            var language = languagestrings.FirstOrDefault();
+            string language = null;
+            if (context.Request.Path.Value.ToLower() == "/nl") { language = "nl"; }
+            if (context.Request.Path.Value.ToLower() == "/en") { language = "en"; }
+            // context.Request.Query.TryGetValue("language", out StringValues languagestrings);
+            //  var language = languagestrings.FirstOrDefault();
             return Get((language ?? System.Globalization.CultureInfo.CurrentCulture.TwoLetterISOLanguageName).ToLower());
         }
         private KeyValuePair<string, string> KV(PropertyInfo pd)

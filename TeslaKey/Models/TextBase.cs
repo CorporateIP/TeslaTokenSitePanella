@@ -85,7 +85,7 @@ namespace TeslaKey.Languages
 
     public class TextBaseNL : TextBase
     {
-        public override string HtlmTitle => "Teslaview";
+        public override string HtlmTitle => "TeslaTokenGenerator";
         public override string HtmlHeader => "Genereer een API sleutel voor je Tesla Account.";
 
         public override string LanguageName => "NL";
@@ -120,7 +120,7 @@ namespace TeslaKey.Languages
      }
     public class TextBaseEN : TextBase
     {
-        public override string HtlmTitle => "Teslaview";
+        public override string HtlmTitle => "TeslaTokenGenerator";
         public override string HtmlHeader => "Generate an API token for your Tesla Account.";
 
         public override string LanguageName => "EN";

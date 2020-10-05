@@ -66,7 +66,7 @@
                 data = JSON.parse(data);
                 if (data.token != null) {
                     $('#code').val(data.token);
-                    $('#refreshtoken').val(data.refreshtoken);
+                    $('#refreshtoken').val(data.refreshToken);
                 } else {
                     $('#code').val('@(TB.MsgGotaProblem)');
                     $('#refreshtoken').val(data.message);

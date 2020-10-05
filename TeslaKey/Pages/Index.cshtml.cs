@@ -14,6 +14,8 @@ namespace TeslaKey.Pages
             else if (HttpContext.Request.Path.Value.ToLower() == "/en") { language = "en"; }
             else { language = System.Globalization.CultureInfo.CurrentCulture.TwoLetterISOLanguageName; }
 
+            if (language != "nl" && language != "en") { language = "en"; }
+
             if (HttpContext.Request.Path.Value.ToLower() != "/" + language)
             {
                 return Redirect("/" + language);

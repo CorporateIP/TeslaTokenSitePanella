@@ -121,6 +121,7 @@
                                 <label for="password">@(TB.password):</label>
                                 <input type="password" id="password" />
                             </div>
+                            <p class="docenter">@(TB.infotext)</p>
                             <button type="button" onclick="requesttoken()">@(TB.BtnRequest)</button>
                         </div>
                     </fieldset>
@@ -138,7 +139,6 @@
                                 <label for="refreshtoken">@(TB.refreshToken):</label>
                                 <input class="inputShow" type="text" id="refreshtoken" readonly />
                             </div>
-                            <p class="docenter">@(TB.infotext)</p>
                         </div>
                     </fieldset>
                 </form>

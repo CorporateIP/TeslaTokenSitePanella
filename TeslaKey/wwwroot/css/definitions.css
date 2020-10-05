@@ -189,7 +189,7 @@ body {
 
     @media screen and ( max-width: 600px) {
         .main--wrapper {
-            padding: 2.5% 10%;
+            padding: 2.5% 0%; /*10%*/
         }
 
         .github img {
@@ -205,7 +205,7 @@ body {
 
     @media screen and ( max-width: 450px) {
         .main--wrapper {
-            padding: 2.5% 5%;
+            padding: 2.5% 0%; /*5%*/
         }
 
         .github img {

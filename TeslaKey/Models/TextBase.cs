@@ -66,7 +66,10 @@ namespace TeslaKey.Languages
         public abstract string refreshToken { get; }
         public abstract string loginSub { get; }
         public abstract string github { get; }
+
         public abstract string commingsoon { get; }
+
+        public abstract string toClipboard { get; }
 
         public abstract string MsgRequireLogin { get; }
         public abstract string MsgInvalidLogin { get; }
@@ -88,12 +91,12 @@ namespace TeslaKey.Languages
 
     public class TextBaseNL : TextBase
     {
-        public override string HtlmTitle => "TeslaTokenGenerator";
+        public override string HtlmTitle => "Tesla Token Generator";
         public override string HtmlHeader => "Genereer een API sleutel voor je Tesla Account.";
 
         public override string LanguageName => "NL";
 
-        public override string email => "E-mail adres";
+        public override string email => "Emailadres";
         public override string password => "Wachtwoord";
         public override string status => "Status";
 
@@ -105,6 +108,8 @@ namespace TeslaKey.Languages
         public override string github => "Bekijk op Github";
 
         public override string commingsoon => "Nog niet beschikbaar";
+
+        public override string toClipboard => "Kopiëren naar klembord";
 
         public override string MsgRequireLogin => "Naam en paswoord zijn vereist";
         public override string MsgInvalidLogin => "Toegang geweigerd";
@@ -125,7 +130,7 @@ namespace TeslaKey.Languages
     }
     public class TextBaseEN : TextBase
     {
-        public override string HtlmTitle => "TeslaTokenGenerator";
+        public override string HtlmTitle => "Tesla Token Generator";
         public override string HtmlHeader => "Generate an API token for your Tesla Account.";
 
         public override string LanguageName => "EN";
@@ -140,7 +145,10 @@ namespace TeslaKey.Languages
         public override string refreshToken => "Refresh token";
         public override string loginSub => "With your tesla account";
         public override string github => "View on Github";
+
         public override string commingsoon => "Coming soon..";
+
+        public override string toClipboard => "Copy to clipboard";
 
         public override string MsgRequireLogin => "name and password are required";
         public override string MsgInvalidLogin => "invalid login";

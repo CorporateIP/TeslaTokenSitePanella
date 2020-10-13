@@ -125,7 +125,7 @@ namespace TeslaKey.Languages
         public override string infoheader => "Disclaimer ©2020";
         public override string infotext => "Wij slaan geen van je gegevens op, we gebruiken deze alleen om de API sleutel bij Tesla op te vragen.";
 
-        public override string HtlmHeaderTitle => "Genereer een token om veilig gebruik te maken van de Tesla API - TeslaTokenGenerator";
+        public override string HtlmHeaderTitle => "Genereer een token voor de Tesla API - TeslaTokenGenerator";
         public override string HtmlHeaderDescription => "Met deze gratis tool kunt u een token genereren om derde partijen toegang te geven tot uw Tesla account, zonder hen uw Tesla gebruikersnaam en wachtwoord te verstrekken.";
     }
     public class TextBaseEN : TextBase
@@ -164,7 +164,7 @@ namespace TeslaKey.Languages
         public override string infoheader => "Disclaimer ©2020";
         public override string infotext => "We do not store any of your credentials, we only use your credentials to retrieve the API token from Tesla.";
 
-        public override string HtlmHeaderTitle => "Generate a token to securely access the Tesla API - TeslaTokenGenerator";
+        public override string HtlmHeaderTitle => "Generate a token for the Tesla API - TeslaTokenGenerator";
         public override string HtmlHeaderDescription => "With this free generator you can create a token to access the Tesla API for third party applications, without providing them your username and password.";
     }
 }

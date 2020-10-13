@@ -7,18 +7,34 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-180467901-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-180467901-1');
+    </script>
+    <!-- Tags -->
     <meta name="viewport" content="width=device-width" />
     <title>@(TB.HtlmHeaderTitle)</title>
     <meta name="description" content="@(TB.HtmlHeaderDescription)">
     <link rel="stylesheet" href="/dist/css/bootstrap.css" />
-    <link rel="stylesheet" href="~/css/definitions.css" type="text/css" />
+    <link rel="stylesheet" href="~/css/definitions.css?v=1.0.0" type="text/css" />
+    <!-- Open Graph -->
+    <meta property="og:title" content="@(TB.HtlmHeaderTitle)" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="@(TB.HtmlHeaderDescription)" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="nl_NL" />
+    <meta property="og:url" content="https://teslatokengenerator.com" />
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="body-content">
 
-        <a class="github" href="https://github.com/Panella-BV/TeslaTokenSite.git">
+        <a class="github" target="_blank" href="https://github.com/Panella-BV/TeslaTokenSite.git">
             <p>@(TB.github)</p>
             <img src="~/images/github-brands.svg" alt="github" />
         </a>
@@ -83,7 +99,7 @@
             </div>
         </div>
         <footer>
-            <p class="copy">Copyright 2020 - Panella B.V.</p>
+            <p class="copy">Copyright &copy; 2020 - <a target="_blank" href="https://panella.nl/">Panella B.V.</a></p>
         </footer>
     </div>
     <!-- Scripts -->

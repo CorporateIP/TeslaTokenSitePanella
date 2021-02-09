@@ -1,31 +1,71 @@
-﻿
-@font-face {
-    font-family: theFont;
-    src: url(/fonts/Montserrat-Medium.ttf);
+﻿* ::selection {
+    color: #fff;
+    background: #FF3A3A;
 }
 
 body {
-    font-family: theFont;
+    font-family: 'Montserrat', sans-serif;
     background-color: #131313;
 }
 
-.main--wrapper {
-    padding: 2.5% 20%;
+header {
+    text-align: center;
+    padding: 50px 0;
 }
 
-.main--form {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    max-width: 830px;
-    margin: auto;
+/* Languages selection styling */
+
+#languages, .stores {
+    display: inline-block;
+    position: relative;
+    margin-bottom: 50px;
 }
+
+.stores img {
+    width: 150.66px;
+    margin: 5px;
+}
+
+#languages img {
+    height: 40px;
+    width: 40px;
+    display: inline-block;
+    border-radius: 50%;
+    padding: 2px;
+}
+
+.active {
+    border: 2px #FF3A3A solid;
+}
+
+/* Disclaimer */
+
+.disclaimer {
+    display: inline-block;
+    padding: 10px;
+    max-width: 500px;
+    border-radius: 10px;
+    margin-top: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+    .disclaimer p {
+        font-weight: bold;
+        margin: 0;
+        padding: 0;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    .disclaimer span {
+        color: #FF3A3A;
+    }
+
 .mainTitle {
     color: white;
+    font-weight: bold;
     font-size: 30px;
-    font-weight: 700;
+    margin-bottom: 5px;
 }
 
 .mainTitleSub {
@@ -33,19 +73,18 @@ body {
     font-size: 20px;
     font-weight: 600;
 }
-/* Form items styling */
+
+/* Forms */
+
 #loginform, #apiKeyForm {
     width: 100%;
     color: white;
-    max-width: 400px;
-    padding: 0 5%;
+    padding: 40px 30px;
     border-radius: 10px;
     background-color: rgba(255, 255, 255, 0.1);
-    min-height: 480px;
-    max-height: 480px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    text-align: center;
+    height: 100%;
+    margin-bottom: 50px;
 }
 
 .formItem div {
@@ -57,9 +96,11 @@ body {
     font-weight: 600;
     margin-bottom: 10px;
     font-size: 20px;
+    text-align: left;
 }
 
-.formItem input {
+.formItem input,
+.formItem textarea {
     border: none;
     width: 100%;
     font-size: 23px;
@@ -71,10 +112,19 @@ body {
         outline: none;
     }
 
-    .formItem input.inputShow {
+    .formItem .inputShow {
         background-color: rgba(255, 255, 255, 0.1);
-        text-align: center;
+        color: rgba(255, 255, 255, 0.5);
     }
+
+.toClipboard {
+    text-align: left!important;
+    color: #FF3A3A!important;
+    text-decoration: underline!important;
+    font-weight: bold;
+    cursor: pointer;
+    display: block
+}
 
 .formItem button {
     border: none;
@@ -99,51 +149,26 @@ body {
     font-weight: 600;
 }
 
-.formSub, .copy {
-    font-size: 20px;
+.formSub {
     color: rgba(255, 255, 255, 0.5);
+    font-weight: bold;
+    font-size: 20px;
+}
+
+/* Footer */
+footer {
+    padding: 40px 0;
 }
 
 .copy {
-    margin-top: 20px;
-    font-weight: 600;
-}
-/* Global Classes */
-.docenter {
     text-align: center;
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: bold;
 }
 
-.doright {
-    text-align: right;
-}
-
-/* Languages selection styling */
-#languages, .stores {
-    display: inline-block;
-    position: relative;
-    left: 50%;
-    top: 0%;
-    transform: translate(-50%,0%);
-    margin-bottom: 50px;
-    text-align: center;
-}
-
-    .stores img {
-        width: 150.66px;
-        margin: 5px;
+    .copy a {
+        color: #FF3A3A;
     }
-
-    #languages img {
-        height: 40px;
-        width: 40px;
-        display: inline-block;
-        border-radius: 50%;
-        padding: 2px;
-    }
-
-.active {
-    border: 2px #FF3A3A solid;
-}
 
 /* Github link styling */
 .github {
@@ -152,6 +177,8 @@ body {
     right: 20px;
     top: 20px;
     padding: 10px;
+    display: flex;
+    align-items: center;
     border-radius: 10px;
 }
 
@@ -161,54 +188,41 @@ body {
         display: inline-block;
         font-weight: 600;
         font-size: 20px;
-        margin-right: 10px;
+        margin: 0 10px 0 0;
     }
 
     .github img {
         display: inline-block;
-        width: 70px;
+        width: 50px;
     }
 
 /* Media queries */
-@media screen and ( max-width: 950px) {
-    .main--form {
-        flex-direction: column;
-    }
-
-    #loginform {
+@media screen and ( max-width: 767px) {
+    #loginform,
+    #apiKeyForm {
+        padding: 30px 20px;
+        height: auto;
         margin-bottom: 20px;
     }
-
-}
-
-@media screen and ( min-width: 950px) {
-    .main--wrapper {
-        padding: 2.5% 0%;
+    header {
+        padding: 30px 20px;
+    }
+    #languages, .stores {
+        margin-bottom: 20px;
+    }
+    .github img {
+        width: 30px;
     }
 }
 
-    @media screen and ( max-width: 600px) {
-        .main--wrapper {
-            padding: 2.5% 0%; /*10%*/
-        }
-
-        .github img {
-            width: 50px;
-        }
+@media screen and ( max-width: 850px) {
+    .github p {
+        display: none;
     }
+}
 
-    @media screen and ( max-width: 850px) {
-        .github p {
-            display: none;
-        }
+@media screen and ( max-width: 450px) {
+    .github img {
+        width: 30px;
     }
-
-    @media screen and ( max-width: 450px) {
-        .main--wrapper {
-            padding: 2.5% 0%; /*5%*/
-        }
-
-        .github img {
-            width: 30px;
-        }
-    }
+}

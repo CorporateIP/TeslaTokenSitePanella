@@ -2,149 +2,177 @@
 @model TeslaKey.Pages.CreateModel
 @{
     Layout = null;
-
     var TB = TeslaKey.Languages.TextBase.Get(HttpContext);
-
-
 }
 <!DOCTYPE html>
 <html>
 <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-180467901-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-180467901-1');
+    </script>
+    <!-- Tags -->
     <meta name="viewport" content="width=device-width" />
     <title>@(TB.HtlmHeaderTitle)</title>
     <meta name="description" content="@(TB.HtmlHeaderDescription)">
-    <script src="/js/jquery-3.5.0.min.js"></script>
-    <script src="/dist/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/dist/css/bootstrap.css" />
-    <link rel="stylesheet" href="~/css/definitions.css" type="text/css" />
+    <link rel="stylesheet" href="~/css/definitions.css?v=1.0.0" type="text/css" />
+    <!-- Open Graph -->
+    <meta property="og:title" content="@(TB.HtlmHeaderTitle)" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="@(TB.HtmlHeaderDescription)" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="nl_NL" />
+    <meta property="og:url" content="https://teslatokengenerator.com" />
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="body-content">
+
+        <a class="github" target="_blank" href="https://github.com/Panella-BV/TeslaTokenSite.git">
+            <p>@(TB.github)</p>
+            <img src="~/images/github-brands.svg" alt="github" />
+        </a>
+
+        <header>
+            <div id="languages">
+                <a href="/nl" id="NL"><img class="active" src="/images/flag-nl.png" alt="NL" height="20" /></a>
+                <a href="/en" id="EN"><img src="/images/flag-uk.png" alt="EN" height="20" /></a>
+            </div>
+            <p class="docenter mainTitle">@(TB.HtlmTitle)</p>
+            <h1 class="docenter mainTitleSub">@(TB.HtmlHeader)</h1>
+            @*<div class="stores">
+            <a href="javascript:alert('@TB.commingsoon')"><img src="~/images/apple_app_store.svg" alt="Apple AppStore" /></a>
+            <a href="javascript:alert('@TB.commingsoon')"><img src="~/images/google_play_store.svg" alt="Google PlayStore" /></a>
+        </div>*@
+        </header>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <form id="loginform">
+                        <fieldset>
+                            <h2 class="formTitle">Login</h2>
+                            <p class="formSub">@(TB.loginSub)</p>
+                            <div class="formItem">
+                                <div>
+                                    <label for="email">@(TB.email)</label>
+                                    <input type="text" id="email" />
+                                </div>
+                                <div>
+                                    <label for="password">@(TB.password)</label>
+                                    <input type="password" id="password" />
+                                </div>
+                                <button type="button" onclick="requesttoken()">@(TB.BtnRequest)</button>
+                                <div class="disclaimer">
+                                    <p><span>Disclaimer: </span>@(TB.infotext)</p>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <form id="apiKeyForm">
+                        <fieldset>
+                            <h2 class="formTitle">API Token</h2>
+                            <p class="formSub">@(TB.apiTokenSub)</p>
+                            <div class="formItem">
+                                <div>
+                                    <label for="code">@(TB.apiToken)</label>
+                                    <textarea class="inputShow" id="code" readonly></textarea>
+                                    <a class="toClipboard" onclick="toClipboard('code')">@(TB.toClipboard)</a>
+                                </div>
+                                <div>
+                                    <label for="refreshtoken">@(TB.refreshToken)</label>
+                                    <textarea class="inputShow" id="refreshtoken" readonly></textarea>
+                                    <a class="toClipboard" onclick="toClipboard('refreshtoken')">@(TB.toClipboard)</a>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <p class="copy">Copyright &copy; 2020 - <a target="_blank" href="https://panella.nl/">Panella B.V.</a></p>
+        </footer>
+    </div>
+    <!-- Scripts -->
+    <script src="/js/jquery-3.5.0.min.js"></script>
+    <script src="/dist/js/bootstrap.min.js"></script>
+    <script src="/js/clipboard.js"></script>
     <script>
         var request = null, timeout = null;
         $(document).ready(function () {
-            if ('@(TB.LanguageName)' == 'EN') {
-                $("#NL img").removeClass("active");
-                $("#EN img").addClass("active");
-            } else {
-                $("#EN img").removeClass("active");
-                $("#NL img").addClass("active");
-            }
+        if ('@(TB.LanguageName)' == 'EN') {
+            $("#NL img").removeClass("active");
+            $("#EN img").addClass("active");
+        } else {
+            $("#EN img").removeClass("active");
+            $("#NL img").addClass("active");
+        }
         })
         function setclrtimer() {
-            timeout = setTimeout(function () {
-                $('#code').val('');
-                $('#refreshtoken').val('');
-                timeout = null;
-            }, 1000 * 7.5);
+        timeout = setTimeout(function () {
+            $('#code').val('');
+            $('#refreshtoken').val('');
+            timeout = null;
+        }, 1000 * 7.5);
         }
         function requesttoken() {
-            var email = $("#email").val();
-            var password = $("#password").val();
+        var email = $("#email").val();
+        var password = $("#password").val();
 
-            var data = $.param({ email: email, password: password });
+        var data = $.param({ email: email, password: password });
 
-            if (timeout != null) {
-                clearTimeout(timeout);
-                timeout = null;
-            }
-            if (request != null) {
-                request.abort();
-            }
-            $('#code').val('@(TB.MsgRequesting)');
-            $('#refreshtoken').val('');
+        if (timeout != null) {
+            clearTimeout(timeout);
+            timeout = null;
+        }
+        if (request != null) {
+            request.abort();
+        }
+        $('#code').val('@(TB.MsgRequesting)');
+        $('#refreshtoken').val('');
 
-            if (window.sessionStorage) {
-                sessionStorage.setItem("username", email);
-            }
-            request = $.ajax('/gettoken?language=@(TB.LanguageName)', {
-                data: data,
-                method: 'POST',
-                Accept: 'application/json; charset=utf-8',
-                contentType: 'application/x-www-form-urlencoded; charset=utf-8',
-                dataType: "text",
-            }).done(function (data) {
-                data = JSON.parse(data);
-                if (data.token != null) {
-                    $('#code').val(data.token);
-                    $('#refreshtoken').val(data.refreshToken);
-                } else {
-                    $('#code').val('@(TB.MsgGotaProblem)');
-                    $('#refreshtoken').val(data.message);
-                    setclrtimer();
-                }
-            }).fail(function (data) {
-                $('#code').text(data.statusText);
+        if (window.sessionStorage) {
+            sessionStorage.setItem("username", email);
+        }
+        request = $.ajax('/gettoken?language=@(TB.LanguageName)', {
+            data: data,
+            method: 'POST',
+            Accept: 'application/json; charset=utf-8',
+            contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+            dataType: "text",
+        }).done(function (data) {
+            data = JSON.parse(data);
+            if (data.token != null) {
+                $('#code').val(data.token);
+                $('#refreshtoken').val(data.refreshToken);
+            } else {
+                $('#code').val('@(TB.MsgGotaProblem)');
+                $('#refreshtoken').val(data.message);
                 setclrtimer();
-            }).always(function () {
-                request = null;
-            });
+            }
+        }).fail(function (data) {
+            $('#code').text(data.statusText);
+            setclrtimer();
+        }).always(function () {
+            request = null;
+        });
         }
         window.onload = function () {
-
             if (window.sessionStorage) {
                 if (sessionStorage.getItem("username")) {
                     $('#email').val(sessionStorage.getItem("username"));
                 }
             }
-
         }
     </script>
-    <div class="container-fluid body-content">
-        <!-- TODO:: LINK NAAR GITHUB PAGINA IN A ELEMENT ZETTEN-->
-        <a class="github" href="https://github.com/Panella-BV/TeslaTokenSite.git">
-            <p>@(TB.github)</p>
-            <img src="~/images/github-brands.svg" alt="github" />
-        </a>
-        <div class="main--wrapper">
-            <div id="languages">
-                <a href="/nl" id="NL"><img class="active" src="/images/flag-nl.png" alt="NL" height="20" /></a>
-                <a href="/en" id="EN"><img src="/images/flag-uk.png" alt="EN" height="20" /></a>
-            </div>
-            <!--     <h1 class="docenter mainTitle">@(TB.HtlmTitle)</h1>-->
-            <h1 class="docenter mainTitleSub">@(TB.HtmlHeader)</h1>
-            <!--      <div class="stores"> -->
-            <!-- TODO:: LINK NAAR APP STORE VAN DE TESLA APP ALS HIJ ONLINE STAAT IN A ELEMENT ZETTEN
-            <!--    <a href="javascript:alert('@TB.commingsoon')"><img src="~/images/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" alt="Apple store" /></a>
-                <a href="javascript:alert('@TB.commingsoon')"><img src="~/images/Google_Play_Store_badge_EN.svg" alt="Play store" /></a>
-            </div>-->
-            <div class="main--form">
-                <form id="loginform">
-                    <fieldset>
-                        <h2 class="docenter formTitle">Login</h2>
-                        <h2 class="docenter formSub">@(TB.loginSub)</h2>
-                        <div class="formItem">
-                            <div>
-                                <label for="email">@(TB.email):</label>
-                                <input type="text" id="email" />
-                            </div>
-                            <div>
-                                <label for="password">@(TB.password):</label>
-                                <input type="password" id="password" />
-                            </div>
-                            <p class="docenter">@(TB.infotext)</p>
-                            <button type="button" onclick="requesttoken()">@(TB.BtnRequest)</button>
-                        </div>
-                    </fieldset>
-                </form>
-                <form id="apiKeyForm">
-                    <fieldset>
-                        <h2 class="docenter formTitle">API Token</h2>
-                        <h2 class="docenter formSub">@(TB.apiTokenSub)</h2>
-                        <div class="formItem">
-                            <div>
-                                <label for="code">@(TB.apiToken):</label>
-                                <input class="inputShow" type="text" id="code" readonly />
-                            </div>
-                            <div>
-                                <label for="refreshtoken">@(TB.refreshToken):</label>
-                                <input class="inputShow" type="text" id="refreshtoken" readonly />
-                            </div>
-                        </div>
-                    </fieldset>
-                </form>
-            </div>
-            <p class="docenter copy">Copyright 2020 - Panella B.V.</p>
-        </div>
-    </div>
 </body>
 </html>

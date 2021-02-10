@@ -44,13 +44,13 @@ namespace TeslaKey.Controllers
         //   [HttpPost]
         [Route("/gettoken")]
         [Consumes("application/x-www-form-urlencoded")]
-        public async Task<KeyResult> Post([FromForm] Request request)
+        public async Task<KeyResult> Post([FromForm] Request request, string language)
         {
-            var TB = TextBase.Get(HttpContext);
+            var TB = TextBase.Get(HttpContext, language);
             try
             {
                 if (string.IsNullOrWhiteSpace(request.Email) || string.IsNullOrWhiteSpace(request.Password))
-                {
+                { 
                     return KeyResult.Error(TB, TB.MsgRequireLogin);
                 }
 

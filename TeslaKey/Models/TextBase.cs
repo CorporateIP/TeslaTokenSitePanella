@@ -32,15 +32,23 @@ namespace TeslaKey.Languages
         }
         private static TextBase Get(string language)
         {
+            language = language.ToLower();
             if (language.StartsWith("en"))
             {
                 return lookup["en"];
             }
             return lookup["nl"];
         }
-        public static TextBase Get(HttpContext context)
+        public static TextBase Get(HttpContext context, string language =null)
         {
-            string language = null;
+            language = language?.ToLower();
+            if (language != null)
+            {
+                if (language.StartsWith("en") || language.StartsWith("nl"))
+                {
+                    return Get(language);
+                }
+            }
             if (context.Request.Path.Value.ToLower() == "/nl") { language = "nl"; }
             if (context.Request.Path.Value.ToLower() == "/en") { language = "en"; }
             // context.Request.Query.TryGetValue("language", out StringValues languagestrings);

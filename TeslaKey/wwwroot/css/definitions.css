@@ -113,6 +113,8 @@ header {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     resize: none;
+}
+.formItem textarea.istoken {
     line-break: anywhere;
 }
     .formItem input:focus {

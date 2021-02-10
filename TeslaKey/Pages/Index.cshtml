@@ -143,6 +143,9 @@
         if (window.sessionStorage) {
             sessionStorage.setItem("username", email);
         }
+        $('#code').removeClass('istoken');
+        $('#refreshtoken').removeClass('istoken');
+
         request = $.ajax('/gettoken?language=@(TB.LanguageName)', {
             data: data,
             method: 'POST',
@@ -151,9 +154,13 @@
             dataType: "text",
         }).done(function (data) {
             data = JSON.parse(data);
+            $('#code').removeClass('istoken');
+            $('#refreshtoken').removeClass('istoken');
             if (data.token != null) {
                 $('#code').val(data.token);
                 $('#refreshtoken').val(data.refreshToken);
+                $('#code').removeClass('istoken').addClass('istoken');
+                $('#refreshtoken').removeClass('istoken').addClass('istoken');
             } else {
                 $('#code').val('@(TB.MsgGotaProblem)');
                 $('#refreshtoken').val(data.message);

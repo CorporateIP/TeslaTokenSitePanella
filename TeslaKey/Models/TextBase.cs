@@ -87,6 +87,7 @@ namespace TeslaKey.Languages
 
         public abstract string HtlmHeaderTitle { get; }
         public abstract string HtmlHeaderDescription { get; }
+        public abstract string ServerError { get; }
     }
 
     public class TextBaseNL : TextBase
@@ -127,6 +128,7 @@ namespace TeslaKey.Languages
 
         public override string HtlmHeaderTitle => "Genereer een token voor de Tesla API - TeslaTokenGenerator";
         public override string HtmlHeaderDescription => "Met deze gratis tool kunt u een token genereren om derde partijen toegang te geven tot uw Tesla account, zonder hen uw Tesla gebruikersnaam en wachtwoord te verstrekken.";
+        public override string ServerError => "Netwerk/server fout.";
     }
     public class TextBaseEN : TextBase
     {
@@ -166,5 +168,6 @@ namespace TeslaKey.Languages
 
         public override string HtlmHeaderTitle => "Generate a token for the Tesla API - TeslaTokenGenerator";
         public override string HtmlHeaderDescription => "With this free generator you can create a token to access the Tesla API for third party applications, without providing them your username and password.";
+        public override string ServerError => "Network/server error.";
     }
 }

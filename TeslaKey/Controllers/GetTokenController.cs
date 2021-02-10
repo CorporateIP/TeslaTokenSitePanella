@@ -180,7 +180,7 @@ namespace TeslaKey.Controllers
                         return KeyResult.Create(TB, TB.MsgInvalidLogin);
                     }
                 }
-                return KeyResult.Create(TB, (string)"Fout");
+                return KeyResult.Create(TB, TB.ServerError);
             }
             catch
             {
